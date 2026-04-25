@@ -2,8 +2,11 @@
     ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenida a Plataforma de Créditos</h1>
-    <p>Use el menú para gestionar clientes y solicitudes.</p>
-</div>
+<h2>Bienvenido a Plataforma Créditos</h2>
+
+<p>Usuario en sesión: @ViewBag.Usuario</p>
+
+<a asp-controller="Solicitudes" asp-action="Index" class="btn btn-primary">Ver Solicitudes</a>
+<a asp-controller="Clientes" asp-action="Index" class="btn btn-secondary">Ver Clientes</a>
+
 
