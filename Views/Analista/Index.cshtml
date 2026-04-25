@@ -1,25 +1,42 @@
 @model IEnumerable<PlataformaCreditos.Models.SolicitudCredito>
 
-@{
-    ViewData["Title"] = "Panel Analista";
-}
-
-<h1>Solicitudes Pendientes</h1>
-
-<div class="row">
-    @foreach (var solicitud in Model)
-    {
-        <div class="col-md-6">
-            @await Html.PartialAsync("_SolicitudesPartial", solicitud)
-        </div>
-    }
-</div>
+<h2>Panel del Analista</h2>
 
 @if (TempData["Ok"] != null)
 {
-    <div class="alert alert-success mt-3">@TempData["Ok"]</div>
+    <div class="alert alert-success">@TempData["Ok"]</div>
 }
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger mt-3">@TempData["Error"]</div>
-}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var solicitud in Model)
+    {
+        <tr>
+            <td>@solicitud.Cliente.UsuarioId</td>
+            <td>@solicitud.MontoSolicitado</td>
+            <td>@solicitud.FechaSolicitud</td>
+            <td>@solicitud.Estado</td>
+            <td>
+                <form asp-action="Aprobar" method="post" style="display:inline">
+                    <input type="hidden" name="id" value="@solicitud.Id" />
+                    <button type="submit" class="btn btn-success btn-sm">Aprobar</button>
+                </form>
+                <form asp-action="Rechazar" method="post" style="display:inline">
+                    <input type="hidden" name="id" value="@solicitud.Id" />
+                    <input type="text" name="motivo" placeholder="Motivo" class="form-control form-control-sm" />
+                    <button type="submit" class="btn btn-danger btn-sm">Rechazar</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
