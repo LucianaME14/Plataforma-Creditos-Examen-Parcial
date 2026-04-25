@@ -17,17 +17,12 @@ public class SolicitudesController : Controller
         _context = context;
     }
 
-    
     public async Task<IActionResult> Index()
     {
-        var solicitudes = await _context.Solicitudes
-            .Include(s => s.Cliente)
-            .ToListAsync();
-
+        var solicitudes = await _context.Solicitudes.Include(s => s.Cliente).ToListAsync();
         return View(solicitudes);
     }
 
-    
     public async Task<IActionResult> MisSolicitudes()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -42,7 +37,6 @@ public class SolicitudesController : Controller
         return View(solicitudes);
     }
 
-   
     [HttpGet]
     public IActionResult Create()
     {
@@ -96,5 +90,61 @@ public class SolicitudesController : Controller
         TempData["Ok"] = "Solicitud registrada exitosamente.";
         return RedirectToAction(nameof(MisSolicitudes));
     }
-}
 
+    public async Task<IActionResult> Details(int id)
+    {
+        var solicitud = await _context.Solicitudes
+            .Include(s => s.Cliente)
+            .FirstOrDefaultAsync(s => s.Id == id);
+
+        if (solicitud == null) return NotFound();
+
+        return View(solicitud);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var solicitud = await _context.Solicitudes.FindAsync(id);
+        if (solicitud == null) return NotFound();
+        return View(solicitud);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, SolicitudCredito solicitud)
+    {
+        if (id != solicitud.Id) return NotFound();
+
+        if (ModelState.IsValid)
+        {
+            _context.Update(solicitud);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(solicitud);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var solicitud = await _context.Solicitudes
+            .Include(s => s.Cliente)
+            .FirstOrDefaultAsync(s => s.Id == id);
+
+        if (solicitud == null) return NotFound();
+
+        return View(solicitud);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var solicitud = await _context.Solicitudes.FindAsync(id);
+        if (solicitud != null)
+        {
+            _context.Solicitudes.Remove(solicitud);
+            await _context.SaveChangesAsync();
+        }
+        return RedirectToAction(nameof(Index));
+    }
+}
