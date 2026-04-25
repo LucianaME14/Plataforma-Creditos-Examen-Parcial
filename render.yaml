@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: plataforma-creditos
+    env: dotnet
+    plan: free
+    buildCommand: "dotnet publish -c Release -o out"
+    startCommand: "dotnet out/PlataformaCreditos.dll"
+    envVars:
+      - key: ConnectionStrings__DefaultConnection
+        value: "Data Source=PlataformaCreditos.db"
+      - key: ConnectionStrings__RedisConnection
+        value: "redis://default:<PASSWORD>@<REDISLABS_HOST>:6379"
