@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Nueva Solicitud";
+}
+
+<h1>Registrar Solicitud</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Monto Solicitado</label>
+        <input type="number" name="montoSolicitado" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Enviar</button>
+</form>
+
+@if (TempData["Ok"] != null)
+{
+    <div class="alert alert-success">@TempData["Ok"]</div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">Errores en la solicitud</div>
+}

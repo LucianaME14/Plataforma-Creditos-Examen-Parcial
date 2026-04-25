@@ -1,0 +1,31 @@
+@model IEnumerable<PlataformaCreditos.Models.SolicitudCredito>
+
+@{
+    ViewData["Title"] = "Mis Solicitudes";
+}
+
+<h1>Mis Solicitudes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Monto</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Motivo Rechazo</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var s in Model)
+{
+        <tr>
+            <td>@s.MontoSolicitado</td>
+            <td>@s.FechaSolicitud</td>
+            <td>@s.Estado</td>
+            <td>@s.MotivoRechazo</td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Nueva Solicitud</a>

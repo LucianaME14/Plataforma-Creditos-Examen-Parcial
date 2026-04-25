@@ -1,0 +1,25 @@
+@model IEnumerable<PlataformaCreditos.Models.SolicitudCredito>
+
+<h2>Solicitudes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Cliente?.UsuarioId</td>
+            <td>@item.MontoSolicitado</td>
+            <td>@item.FechaSolicitud</td>
+            <td>@item.Estado</td>
+        </tr>
+    }
+    </tbody>
+</table>

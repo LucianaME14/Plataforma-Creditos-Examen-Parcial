@@ -1,0 +1,27 @@
+@model PlataformaCreditos.Models.SolicitudCredito
+
+<div class="card mb-3">
+    <div class="card-header">
+        <strong>Cliente:</strong> @Model.Cliente.UsuarioId
+    </div>
+    <div class="card-body">
+        <p><strong>Monto Solicitado:</strong> @Model.MontoSolicitado</p>
+        <p><strong>Fecha Solicitud:</strong> @Model.FechaSolicitud.ToString("dd/MM/yyyy")</p>
+        <p><strong>Estado:</strong> @Model.Estado</p>
+
+        <div class="d-flex gap-2">
+            <!-- Botón Aprobar -->
+            <form asp-action="Aprobar" method="post" class="d-inline">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button type="submit" class="btn btn-success">Aprobar</button>
+            </form>
+
+            <!-- Botón Rechazar -->
+            <form asp-action="Rechazar" method="post" class="d-inline">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="text" name="motivo" placeholder="Motivo rechazo" class="form-control d-inline w-50" />
+                <button type="submit" class="btn btn-danger">Rechazar</button>
+            </form>
+        </div>
+    </div>
+</div>

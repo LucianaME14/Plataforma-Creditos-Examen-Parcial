@@ -1,0 +1,29 @@
+@model IEnumerable<PlataformaCreditos.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1>Listado de Clientes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Ingresos Mensuales</th>
+            <th>Activo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var c in Model)
+{
+        <tr>
+            <td>@c.UsuarioId</td>
+            <td>@c.IngresosMensuales</td>
+            <td>@c.Activo</td>
+            <td><a asp-action="Details" asp-route-id="@c.Id">Detalles</a></td>
+        </tr>
+}
+    </tbody>
+</table>

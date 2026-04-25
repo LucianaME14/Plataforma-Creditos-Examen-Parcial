@@ -1,0 +1,19 @@
+@model PlataformaCreditos.Models.Cliente
+
+@{
+    ViewData["Title"] = "Detalles Cliente";
+}
+
+<h1>Detalles Cliente</h1>
+
+<p><strong>Usuario:</strong> @Model.UsuarioId</p>
+<p><strong>Ingresos Mensuales:</strong> @Model.IngresosMensuales</p>
+<p><strong>Activo:</strong> @Model.Activo</p>
+
+<h3>Solicitudes</h3>
+<ul>
+@foreach (var s in Model.Solicitudes)
+{
+    <li>@s.MontoSolicitado - @s.Estado</li>
+}
+</ul>
