@@ -1,6 +1,7 @@
 @model IEnumerable<PlataformaCreditos.Models.SolicitudCredito>
 
 <h2>Solicitudes</h2>
+<a asp-action="Create" class="btn btn-primary">Nueva Solicitud</a>
 
 <table class="table">
     <thead>
@@ -9,6 +10,7 @@
             <th>Monto</th>
             <th>Fecha</th>
             <th>Estado</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -19,7 +21,13 @@
             <td>@item.MontoSolicitado</td>
             <td>@item.FechaSolicitud</td>
             <td>@item.Estado</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
         </tr>
     }
     </tbody>
 </table>
+

@@ -1,29 +1,31 @@
 @model IEnumerable<PlataformaCreditos.Models.Cliente>
 
-@{
-    ViewData["Title"] = "Clientes";
-}
-
-<h1>Listado de Clientes</h1>
+<h2>Clientes</h2>
+<a asp-action="Create" class="btn btn-primary">Nuevo Cliente</a>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Usuario</th>
+            <th>UsuarioId</th>
             <th>Ingresos Mensuales</th>
             <th>Activo</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var c in Model)
-{
+    @foreach (var item in Model)
+    {
         <tr>
-            <td>@c.UsuarioId</td>
-            <td>@c.IngresosMensuales</td>
-            <td>@c.Activo</td>
-            <td><a asp-action="Details" asp-route-id="@c.Id">Detalles</a></td>
+            <td>@item.UsuarioId</td>
+            <td>@item.IngresosMensuales</td>
+            <td>@item.Activo</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+

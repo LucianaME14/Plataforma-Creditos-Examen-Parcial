@@ -23,14 +23,16 @@ public static class DbInitializer
             { 
                 Cliente = cliente1, 
                 MontoSolicitado = 4000, 
-                Estado = EstadoSolicitud.Pendiente 
+                Estado = EstadoSolicitud.Pendiente,
+                FechaSolicitud = DateTime.Now
             });
 
             context.Solicitudes.Add(new SolicitudCredito 
             { 
                 Cliente = cliente2, 
                 MontoSolicitado = 5000, 
-                Estado = EstadoSolicitud.Aprobado 
+                Estado = EstadoSolicitud.Aprobado,   
+                FechaSolicitud = DateTime.Now
             });
 
             await context.SaveChangesAsync();
@@ -46,7 +48,8 @@ public static class DbInitializer
         var analista = new ApplicationUser 
         { 
             UserName = "analista@demo.com", 
-            Email = "analista@demo.com" 
+            Email = "analista@demo.com",
+            NombreCompleto = "Analista Demo"
         };
 
         if (await userManager.FindByEmailAsync(analista.Email) == null)
@@ -56,5 +59,7 @@ public static class DbInitializer
         }
     }
 }
+
+
 
 
