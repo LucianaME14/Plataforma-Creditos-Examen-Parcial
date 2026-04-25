@@ -17,12 +17,14 @@ public class SolicitudesController : Controller
         _context = context;
     }
 
+   
     public async Task<IActionResult> Index()
     {
         var solicitudes = await _context.Solicitudes.Include(s => s.Cliente).ToListAsync();
         return View(solicitudes);
     }
 
+    
     public async Task<IActionResult> MisSolicitudes()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -37,6 +39,7 @@ public class SolicitudesController : Controller
         return View(solicitudes);
     }
 
+    // Crear solicitud
     [HttpGet]
     public IActionResult Create()
     {
@@ -91,6 +94,7 @@ public class SolicitudesController : Controller
         return RedirectToAction(nameof(MisSolicitudes));
     }
 
+    
     public async Task<IActionResult> Details(int id)
     {
         var solicitud = await _context.Solicitudes
@@ -102,6 +106,7 @@ public class SolicitudesController : Controller
         return View(solicitud);
     }
 
+    
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
@@ -124,6 +129,7 @@ public class SolicitudesController : Controller
         return View(solicitud);
     }
 
+    
     [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
@@ -148,3 +154,4 @@ public class SolicitudesController : Controller
         return RedirectToAction(nameof(Index));
     }
 }
+

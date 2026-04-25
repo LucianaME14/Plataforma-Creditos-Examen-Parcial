@@ -1,15 +1,17 @@
 @model PlataformaCreditos.Models.SolicitudCredito
 
-@{
-    ViewData["Title"] = "Detalle Solicitud";
-}
+<h2>Detalles Solicitud</h2>
 
-<h1>Detalle Solicitud</h1>
+<div>
+    <p><strong>Cliente:</strong> @Model.Cliente.UsuarioId</p>
+    <p><strong>Monto:</strong> @Model.MontoSolicitado</p>
+    <p><strong>Fecha:</strong> @Model.FechaSolicitud</p>
+    <p><strong>Estado:</strong> @Model.Estado</p>
+    @if (Model.Estado == EstadoSolicitud.Rechazado)
+    {
+        <p><strong>Motivo Rechazo:</strong> @Model.MotivoRechazo</p>
+    }
+</div>
 
-<p><strong>Monto:</strong> @Model.MontoSolicitado</p>
-<p><strong>Fecha:</strong> @Model.FechaSolicitud</p>
-<p><strong>Estado:</strong> @Model.Estado</p>
-@if (Model.Estado == PlataformaCreditos.Models.EstadoSolicitud.Rechazado)
-{
-    <p><strong>Motivo Rechazo:</strong> @Model.MotivoRechazo</p>
-}
+<a asp-action="Index" class="btn btn-secondary">Volver</a>
+

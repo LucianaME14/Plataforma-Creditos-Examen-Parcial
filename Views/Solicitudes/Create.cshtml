@@ -1,23 +1,11 @@
-@{
-    ViewData["Title"] = "Nueva Solicitud";
-}
+@model PlataformaCreditos.Models.SolicitudCredito
 
-<h1>Registrar Solicitud</h1>
+<h2>Nueva Solicitud</h2>
 
-<form asp-action="Create" method="post">
+<form asp-action="Create">
     <div class="form-group">
-        <label>Monto Solicitado</label>
-        <input type="number" name="montoSolicitado" class="form-control" />
+        <label for="MontoSolicitado">Monto Solicitado</label>
+        <input type="number" name="MontoSolicitado" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-success">Enviar</button>
+    <button type="submit" class="btn btn-success">Registrar</button>
 </form>
-
-@if (TempData["Ok"] != null)
-{
-    <div class="alert alert-success">@TempData["Ok"]</div>
-}
-
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger">Errores en la solicitud</div>
-}
