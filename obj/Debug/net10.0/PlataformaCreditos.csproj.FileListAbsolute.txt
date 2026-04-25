@@ -282,3 +282,4 @@ C:\Users\lmore\PlataformaCreditos\obj\Debug\net10.0\refint\PlataformaCreditos.dl
 C:\Users\lmore\PlataformaCreditos\obj\Debug\net10.0\PlataformaCreditos.pdb
 C:\Users\lmore\PlataformaCreditos\obj\Debug\net10.0\PlataformaCreditos.genruntimeconfig.cache
 C:\Users\lmore\PlataformaCreditos\obj\Debug\net10.0\ref\PlataformaCreditos.dll
+C:\Users\lmore\PlataformaCreditos\obj\Debug\net10.0\PlataformaCreditos.sourcelink.json
